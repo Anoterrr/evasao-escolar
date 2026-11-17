@@ -1,5 +1,7 @@
 # 🎓 Radar de Evasão Escolar
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Anoterrr/evasao-escolar/blob/main/colab.ipynb)
+
 Sistema com Inteligência Artificial que estima a **probabilidade de um aluno de graduação evadir**
 e alerta a coordenação, priorizando quem precisa de intervenção primeiro.
 
@@ -30,8 +32,15 @@ O modelo já treinado está em `modelos/`. Para reproduzir o treino:
 uv run python treinar.py           # treina, compara modelos e salva em modelos/
 ```
 
+### Google Colab
+
+O notebook [`colab.ipynb`](colab.ipynb) percorre o projeto passo a passo: dados, análise exploratória, engenharia
+de atributos, treino, resultados e previsões. É só clicar no selo **Open in Colab** no topo e usar
+*Ambiente de execução → Executar tudo*. A última célula abre o app Streamlit por um link temporário
+(túnel cloudflared), que funciona enquanto a sessão do Colab estiver ativa.
+
 <details>
-<summary>Sem uv (pip tradicional / Google Colab)</summary>
+<summary>Sem uv (pip tradicional)</summary>
 
 ```bash
 python -m venv .venv
@@ -123,6 +132,7 @@ pouco para o XGBoost. Esse é um bom ponto para discutir na apresentação.
 ```
 evasao-escolar/
 ├── app.py                  # interface Streamlit
+├── colab.ipynb             # notebook passo a passo (Google Colab)
 ├── treinar.py              # treino, comparação, avaliação e exportação
 ├── src/dados.py            # leitura, tradução de colunas, engenharia de atributos, faixas
 ├── data/

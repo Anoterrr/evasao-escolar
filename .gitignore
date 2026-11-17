@@ -1,3 +1,7 @@
 .venv/
 __pycache__/
 *.pyc
+prever_cenarios.py
+streamlit.log
+tunnel.log
+cloudflared
