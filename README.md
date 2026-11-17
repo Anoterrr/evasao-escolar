@@ -9,16 +9,37 @@ e alerta a coordenação, priorizando quem precisa de intervenção primeiro.
 
 ## Como rodar
 
+O projeto usa o [uv](https://docs.astral.sh/uv/) para gerenciar o Python e as dependências.
+O `pyproject.toml` e o `uv.lock` fixam as versões exatas, e o `.python-version` fixa o Python 3.12
+(o uv baixa esse Python sozinho se ele não estiver instalado).
+
+```bash
+# 1. Instalar o uv (uma vez só)
+curl -LsSf https://astral.sh/uv/install.sh | sh                                   # Linux/macOS
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex" # Windows
+
+# 2. Clonar e rodar
+git clone https://github.com/Anoterrr/evasao-escolar.git
+cd evasao-escolar
+uv run streamlit run app.py        # cria o ambiente, instala tudo e abre http://localhost:8501
+```
+
+O modelo já treinado está em `modelos/`. Para reproduzir o treino:
+
+```bash
+uv run python treinar.py           # treina, compara modelos e salva em modelos/
+```
+
+<details>
+<summary>Sem uv (pip tradicional / Google Colab)</summary>
+
 ```bash
 python -m venv .venv
 source .venv/bin/activate          # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
-
-python treinar.py                  # treina, compara modelos e salva em modelos/
-streamlit run app.py               # abre o app em http://localhost:8501
+streamlit run app.py
 ```
-
-O modelo já treinado está em `modelos/`, então o `treinar.py` só é necessário para reproduzir o treino.
+</details>
 
 ## O problema
 
@@ -110,7 +131,10 @@ evasao-escolar/
 ├── modelos/
 │   ├── modelo.joblib       # pipeline treinado + limiares + valores de referência
 │   └── metricas.json       # todas as métricas usadas no app
-└── requirements.txt
+├── pyproject.toml          # dependências (uv)
+├── uv.lock                 # versões travadas (uv)
+├── .python-version         # Python 3.12
+└── requirements.txt        # alternativa para pip/Colab
 ```
 
 ## Limitações
